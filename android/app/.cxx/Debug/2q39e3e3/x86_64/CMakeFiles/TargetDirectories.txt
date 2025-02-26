@@ -1,0 +1,2 @@
+C:/Users/Amanda Bacallao/AndroidStudioProjects/protectora_animalesnew/android/app/.cxx/Debug/2q39e3e3/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/Amanda Bacallao/AndroidStudioProjects/protectora_animalesnew/android/app/.cxx/Debug/2q39e3e3/x86_64/CMakeFiles/rebuild_cache.dir
