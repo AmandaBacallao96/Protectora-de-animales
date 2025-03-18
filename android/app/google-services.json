@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "367762844989",
+    "project_id": "protectora-42f63",
+    "storage_bucket": "protectora-42f63.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367762844989:android:2e157ba1c6cb5269a96954",
+        "android_client_info": {
+          "package_name": "com.example.protectora_animales"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtGFNvMqpHHrRzl5wUWTisIYSoC6DP36M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367762844989:android:a214a65392c9ab13a96954",
+        "android_client_info": {
+          "package_name": "com.example.protectora_animalesnew"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtGFNvMqpHHrRzl5wUWTisIYSoC6DP36M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
