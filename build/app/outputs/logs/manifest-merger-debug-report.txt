@@ -4,6 +4,8 @@ INJECTED from C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animales
 INJECTED from C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\android\app\src\debug\AndroidManifest.xml
 MERGED from [:image_picker_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-32:19
 MERGED from [:image_picker_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-32:19
+MERGED from [:url_launcher_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [:cloud_firestore] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_auth] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
@@ -69,6 +71,7 @@ INJECTED from C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animales
 INJECTED from C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 MERGED from [:image_picker_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-34:12
+MERGED from [:url_launcher_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-14:12
 MERGED from [:cloud_firestore] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_auth] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_storage] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-15:12
@@ -107,7 +110,7 @@ MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\Amanda 
 MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\1f09657a2a1235efa594828cad64a94b\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\b8943076989d6dfc2e289467cc90a0fa\transformed\fragment-1.7.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity:1.9.3] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\cb2e375373327099dae99ef67e22bd48\transformed\jetified-activity-1.9.3\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\db996d61737cd05d43f0d70e127b6295\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.browser:browser:1.8.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\67727c837d014f8c6a3d388576ba56a0\transformed\browser-1.8.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\c3688d9e9abb525e25e07ee7d13756e6\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\174b4bd28ddbb1ce55191bd343761248\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\531092df5c42dce53c382c5e4576e653\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -125,8 +128,8 @@ MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\Amanda Bacalla
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\cb96ab78acb1396053cbc5c2f7e4e8de\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\8360596173d2680bd16a87ab7da6800e\transformed\jetified-googleid-1.1.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\b680c7f2b91c6609039a58a9b1abf8ca\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\acb5f49e5b0f7b0129ba7684e5362706\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\6328a790ddc43f0aaafba956e07b33af\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\acb5f49e5b0f7b0129ba7684e5362706\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\5fc897dfe5017cc1e48966cf24217581\transformed\jetified-core-common-2.0.3\AndroidManifest.xml:2:1-21:12
 	package
 		INJECTED from C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\android\app\src\debug\AndroidManifest.xml
@@ -174,6 +177,8 @@ INJECTED from C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animales
 INJECTED from C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\android\app\src\debug\AndroidManifest.xml
 MERGED from [:image_picker_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:6:5-44
 MERGED from [:image_picker_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:6:5-44
+MERGED from [:url_launcher_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_auth] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
@@ -250,8 +255,8 @@ MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\Amanda Bacallao\.gradle\
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\b8943076989d6dfc2e289467cc90a0fa\transformed\fragment-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity:1.9.3] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\cb2e375373327099dae99ef67e22bd48\transformed\jetified-activity-1.9.3\AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.9.3] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\cb2e375373327099dae99ef67e22bd48\transformed\jetified-activity-1.9.3\AndroidManifest.xml:20:5-44
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\db996d61737cd05d43f0d70e127b6295\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\db996d61737cd05d43f0d70e127b6295\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.8.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\67727c837d014f8c6a3d388576ba56a0\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.8.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\67727c837d014f8c6a3d388576ba56a0\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\c3688d9e9abb525e25e07ee7d13756e6\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\c3688d9e9abb525e25e07ee7d13756e6\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\174b4bd28ddbb1ce55191bd343761248\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:5:5-44
@@ -286,10 +291,10 @@ MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\U
 MERGED from [com.google.android.libraries.identity.googleid:googleid:1.1.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\8360596173d2680bd16a87ab7da6800e\transformed\jetified-googleid-1.1.0\AndroidManifest.xml:5:5-44
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\b680c7f2b91c6609039a58a9b1abf8ca\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\b680c7f2b91c6609039a58a9b1abf8ca\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
-MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\acb5f49e5b0f7b0129ba7684e5362706\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\acb5f49e5b0f7b0129ba7684e5362706\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\6328a790ddc43f0aaafba956e07b33af\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:5:5-44
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\6328a790ddc43f0aaafba956e07b33af\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\acb5f49e5b0f7b0129ba7684e5362706\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\acb5f49e5b0f7b0129ba7684e5362706\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\5fc897dfe5017cc1e48966cf24217581\transformed\jetified-core-common-2.0.3\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.play:core-common:2.0.3] C:\Users\Amanda Bacallao\.gradle\caches\transforms-3\5fc897dfe5017cc1e48966cf24217581\transformed\jetified-core-common-2.0.3\AndroidManifest.xml:7:5-9:41
 	tools:overrideLibrary
@@ -336,6 +341,14 @@ ADDED from [:image_picker_android] C:\Users\Amanda Bacallao\AndroidStudioProject
 		ADDED from [:image_picker_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:17-33
 	android:name
 		ADDED from [:image_picker_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:29:17-63
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher_android] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-74
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:cloud_firestore] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_auth] C:\Users\Amanda Bacallao\AndroidStudioProjects\protectora_animalesnew\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-12:19

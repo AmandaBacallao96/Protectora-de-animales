@@ -1,0 +1,18 @@
+[33mcommit 78a3679ab6670e4f7cb02753b52806722dbbbc0b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 878e8c3 826c0ea
+Author: AmandaBacallao96 <bacallaoamanda96@gmail.com>
+Date:   Tue Mar 18 20:38:51 2025 +0100
+
+    Resuelto conflicto al fusionar historiales
+
+[33mcommit 878e8c31e152c888ab21e4e5249e9365640b3b81[m
+Author: AmandaBacallao96 <bacallaoamanda96@gmail.com>
+Date:   Tue Mar 18 20:33:42 2025 +0100
+
+    Agregar funcionalidades
+
+[33mcommit 826c0eafd77c0ee889b1a58e4d92d1571769a6e6[m
+Author: AmandaBacallao96 <bacallaoamanda96@gmail.com>
+Date:   Wed Feb 26 17:52:04 2025 +0100
+
+    Primer commit: Subiendo proyecto Flutter

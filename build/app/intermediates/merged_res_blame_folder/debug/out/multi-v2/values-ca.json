@@ -38,17 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Amanda Bacallao\\.gradle\\caches\\transforms-3\\78821d2cb6e63e6d2ed6c3f374496db7\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-ca\\values-ca.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,170",
-                        "endColumns": "114,119",
-                        "endOffsets": "165,285"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Amanda Bacallao\\.gradle\\caches\\transforms-3\\db996d61737cd05d43f0d70e127b6295\\transformed\\browser-1.4.0\\res\\values-ca\\values-ca.xml",
+                    "source": "C:\\Users\\Amanda Bacallao\\.gradle\\caches\\transforms-3\\67727c837d014f8c6a3d388576ba56a0\\transformed\\browser-1.8.0\\res\\values-ca\\values-ca.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -62,6 +52,16 @@
                         "startOffsets": "3269,3382,3485,3596",
                         "endColumns": "112,102,110,108",
                         "endOffsets": "3377,3480,3591,3700"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Amanda Bacallao\\.gradle\\caches\\transforms-3\\78821d2cb6e63e6d2ed6c3f374496db7\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-ca\\values-ca.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,170",
+                        "endColumns": "114,119",
+                        "endOffsets": "165,285"
                     }
                 },
                 {

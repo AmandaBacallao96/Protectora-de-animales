@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Importamos FirebaseAuth
 import 'add_event_screen.dart';
+import 'attendees_screen.dart';
 
 class EventsScreen extends StatefulWidget {
   const EventsScreen({super.key});
@@ -10,70 +12,117 @@ class EventsScreen extends StatefulWidget {
 }
 
 class _EventsScreenState extends State<EventsScreen> {
+  String _filterText = '';
+
+  void _filterEvents(String value) {
+    setState(() {
+      _filterText = value.toLowerCase();
+    });
+  }
+
   void _deleteEvent(String eventId) async {
-    await FirebaseFirestore.instance.collection('events').doc(eventId).delete();
-  }
-
-  void _editEvent(String eventId, String title, String date, String time, String address, String description) {
-    TextEditingController titleController = TextEditingController(text: title);
-    TextEditingController dateController = TextEditingController(text: date);
-    TextEditingController timeController = TextEditingController(text: time);
-    TextEditingController addressController = TextEditingController(text: address);
-    TextEditingController descriptionController = TextEditingController(text: description);
-
-    showDialog(
+    bool confirm = await showDialog(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: const Text("Editar Evento"),
-          content: SingleChildScrollView(
-            child: Column(
-              children: [
-                TextField(controller: titleController, decoration: const InputDecoration(labelText: "Título")),
-                TextField(controller: dateController, decoration: const InputDecoration(labelText: "Fecha")),
-                TextField(controller: timeController, decoration: const InputDecoration(labelText: "Hora")),
-                TextField(controller: addressController, decoration: const InputDecoration(labelText: "Dirección")),
-                TextField(controller: descriptionController, decoration: const InputDecoration(labelText: "Descripción")),
-              ],
-            ),
+      builder: (context) => AlertDialog(
+        title: const Text("¿Eliminar evento?"),
+        content: const Text("¿Estás seguro de eliminar este evento? Esta acción no se puede deshacer."),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text("Cancelar", style: TextStyle(color: Colors.green)),
           ),
-          actions: [
-            TextButton(
-              onPressed: () async {
-                await FirebaseFirestore.instance.collection('events').doc(eventId).update({
-                  'title': titleController.text,
-                  'date': dateController.text,
-                  'time': timeController.text,
-                  'address': addressController.text,
-                  'description': descriptionController.text,
-                });
-                Navigator.pop(context);
-              },
-              child: const Text("Guardar", style: TextStyle(color: Colors.teal)),
-            ),
-          ],
-        );
-      },
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            child: const Text("Eliminar"),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm) {
+      await FirebaseFirestore.instance.collection('events').doc(eventId).delete();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Evento eliminado")),
+      );
+    }
+  }
+
+  void _subscribeToEvent(String eventId, String title) async {
+    User? user = FirebaseAuth.instance.currentUser; // Obtener el usuario autenticado
+
+    if (user == null) {
+      // Si no hay usuario autenticado, muestra un mensaje
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Por favor, inicie sesión para inscribirse en el evento")),
+      );
+      return;
+    }
+
+    String userId = user.uid; // Obtener el UID del usuario autenticado
+
+    // Verificar si el usuario ya está inscrito en el evento
+    DocumentSnapshot attendeeDoc = await FirebaseFirestore.instance
+        .collection('events')
+        .doc(eventId)
+        .collection('attendees')
+        .doc(userId)
+        .get();
+
+    if (attendeeDoc.exists) {
+      // Si el usuario ya está inscrito, mostrar mensaje
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Ya estás inscrito en el evento: $title"),
+          backgroundColor: Colors.orange.shade700,
+        ),
+      );
+      return; // Salir del método si ya está inscrito
+    }
+
+    // Obtener los detalles del usuario desde Firestore
+    DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('usuarios').doc(userId).get();
+
+    // Verificar si el documento de usuario existe
+    if (!userDoc.exists) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("No se encontró información del usuario")),
+      );
+      return;
+    }
+
+    // Obtener el nombre y email del usuario desde Firestore
+    String userName = userDoc['nombre'] ?? "Usuario sin nombre"; // Si no hay nombre, poner "Usuario sin nombre"
+    String userEmail = userDoc['email'] ?? "Usuario sin email";  // Si no hay email, poner "Usuario sin email"
+
+    // Inscribir al usuario en el evento, guardando también su nombre y correo
+    await FirebaseFirestore.instance.collection('events').doc(eventId).collection('attendees').doc(userId).set({
+      'userId': userId,
+      'userName': userName, // Guardar el nombre del usuario
+      'userEmail': userEmail, // Guardar el email del usuario
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Te has inscrito en el evento: $title"),
+        backgroundColor: Colors.green.shade700,
+      ),
     );
   }
 
-  void _subscribeToEvent(String title) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Te has inscrito en el evento: $title")),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: Colors.green.shade100,
       appBar: AppBar(
-        title: const Text("Eventos"),
-        backgroundColor: Colors.teal,
+        title: const Text("Eventos", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+        backgroundColor: Colors.green.shade600,
         actions: [
           IconButton(
-            icon: const Icon(Icons.add),
+            icon: const Icon(Icons.add, color: Colors.white),
             onPressed: () {
               Navigator.push(
                 context,
@@ -82,6 +131,22 @@ class _EventsScreenState extends State<EventsScreen> {
             },
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: TextField(
+              onChanged: _filterEvents,
+              decoration: InputDecoration(
+                hintText: "Buscar evento...",
+                filled: true,
+                fillColor: Colors.white,
+                prefixIcon: const Icon(Icons.search, color: Colors.green),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
+              ),
+            ),
+          ),
+        ),
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('events').snapshots(),
@@ -93,7 +158,14 @@ class _EventsScreenState extends State<EventsScreen> {
             return const Center(child: Text("Error al cargar eventos"));
           }
 
-          final events = snapshot.data!.docs;
+          final events = snapshot.data!.docs.where((event) {
+            final title = event['title'].toString().toLowerCase();
+            return title.contains(_filterText);
+          }).toList();
+
+          if (events.isEmpty) {
+            return const Center(child: Text("No hay eventos que coincidan"));
+          }
 
           return ListView.builder(
             padding: const EdgeInsets.all(16),
@@ -102,76 +174,76 @@ class _EventsScreenState extends State<EventsScreen> {
               final event = events[index];
               return Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                elevation: 6,
-                margin: const EdgeInsets.symmetric(vertical: 12),
+                elevation: 5,
+                color: Colors.white,
+                margin: const EdgeInsets.symmetric(vertical: 10),
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(event['title'], style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      Text(event['title'], style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.green)),
                       const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          const Icon(Icons.calendar_today, size: 16, color: Colors.teal),
-                          const SizedBox(width: 6),
-                          Text(event['date'], style: const TextStyle(color: Colors.grey)),
-                        ],
-                      ),
+                      Row(children: [
+                        const Icon(Icons.calendar_today, size: 18, color: Colors.green),
+                        const SizedBox(width: 6),
+                        Text(event['date'], style: const TextStyle(color: Colors.black87)),
+                      ]),
                       const SizedBox(height: 6),
-                      Row(
-                        children: [
-                          const Icon(Icons.access_time, size: 16, color: Colors.teal),
-                          const SizedBox(width: 6),
-                          Text(event['time'], style: const TextStyle(color: Colors.grey)),
-                        ],
-                      ),
+                      Row(children: [
+                        const Icon(Icons.access_time, size: 18, color: Colors.green),
+                        const SizedBox(width: 6),
+                        Text(event['time'], style: const TextStyle(color: Colors.black87)),
+                      ]),
                       const SizedBox(height: 6),
-                      Row(
-                        children: [
-                          const Icon(Icons.location_on, size: 16, color: Colors.teal),
-                          const SizedBox(width: 6),
-                          Expanded(child: Text(event['address'], style: const TextStyle(color: Colors.grey))),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
+                      Row(children: [
+                        const Icon(Icons.location_on, size: 18, color: Colors.green),
+                        const SizedBox(width: 6),
+                        Expanded(child: Text(event['address'], style: const TextStyle(color: Colors.black87))),
+                      ]),
+                      const SizedBox(height: 6),
                       Text(event['description'], style: const TextStyle(color: Colors.black87)),
                       const SizedBox(height: 12),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          ElevatedButton.icon(
+                          IconButton(
+                            icon: const Icon(Icons.edit, color: Colors.blue),
                             onPressed: () {
-                              _editEvent(event.id, event['title'], event['date'], event['time'], event['address'], event['description']);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddEventScreen(eventId: event.id),
+                                ),
+                              );
                             },
-                            icon: const Icon(Icons.edit),
-                            label: const Text("Editar"),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.orange,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            ),
                           ),
-                          ElevatedButton.icon(
+                          IconButton(
                             onPressed: () {
                               _deleteEvent(event.id);
                             },
-                            icon: const Icon(Icons.delete),
-                            label: const Text("Eliminar"),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            ),
+                            icon: const Icon(Icons.delete, color: Colors.red),
                           ),
                           ElevatedButton.icon(
                             onPressed: () {
-                              _subscribeToEvent(event['title']);
+                              _subscribeToEvent(event.id, event['title']);
                             },
-                            icon: const Icon(Icons.check_circle),
-                            label: const Text("Inscribirse"),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.teal,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            ),
+                            icon: const Icon(Icons.check_circle, color: Colors.white),
+                            label: const Text("Inscribirse", style: TextStyle(color: Colors.white)),
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade600),
+                          ),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AttendeesScreen(eventId: event.id),
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.list, color: Colors.white),
+                            label: const Text("Ver inscritos", style: TextStyle(color: Colors.white)),
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.blueAccent),
                           ),
                         ],
                       ),

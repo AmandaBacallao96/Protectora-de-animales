@@ -1,0 +1,1 @@
+ C:\\Users\\Amanda\ Bacallao\\AndroidStudioProjects\\protectora_animalesnew\\.dart_tool\\flutter_build\\2fd975445a54b7b68336a360f7687a3a\\dart_build_result.json: 

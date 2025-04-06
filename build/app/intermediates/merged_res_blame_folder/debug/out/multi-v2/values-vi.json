@@ -4,20 +4,20 @@
             "outputFile": "com.example.protectora_animalesnew.app-mergeDebugResources-33:/values-vi/values-vi.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Amanda Bacallao\\.gradle\\caches\\transforms-3\\db996d61737cd05d43f0d70e127b6295\\transformed\\browser-1.4.0\\res\\values-vi\\values-vi.xml",
+                    "source": "C:\\Users\\Amanda Bacallao\\.gradle\\caches\\transforms-3\\67727c837d014f8c6a3d388576ba56a0\\transformed\\browser-1.8.0\\res\\values-vi\\values-vi.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
                         "startOffsets": "55,172,283,397",
-                        "endColumns": "116,110,113,104",
-                        "endOffsets": "167,278,392,497"
+                        "endColumns": "116,110,113,110",
+                        "endOffsets": "167,278,392,503"
                     },
                     "to": {
                         "startLines": "29,30,31,32",
                         "startColumns": "4,4,4,4",
                         "startOffsets": "3251,3368,3479,3593",
-                        "endColumns": "116,110,113,104",
-                        "endOffsets": "3363,3474,3588,3693"
+                        "endColumns": "116,110,113,110",
+                        "endOffsets": "3363,3474,3588,3699"
                     }
                 },
                 {
@@ -32,9 +32,9 @@
                     "to": {
                         "startLines": "4,5,6,7,8,9,10,33",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "287,384,486,585,685,788,901,3698",
+                        "startOffsets": "287,384,486,585,685,788,901,3704",
                         "endColumns": "96,101,98,99,102,112,115,100",
-                        "endOffsets": "379,481,580,680,783,896,1012,3794"
+                        "endOffsets": "379,481,580,680,783,896,1012,3800"
                     }
                 },
                 {

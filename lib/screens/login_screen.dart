@@ -14,18 +14,27 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-
   void _login() async {
-    try {
+    // Comprobar si los campos están vacíos
+    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Por favor ingresa tu correo y contraseña'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
 
+    try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
       );
 
+      // Si la autenticación es exitosa, navegar a HomeScreen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -33,25 +42,30 @@ class _LoginScreenState extends State<LoginScreen> {
 
       print("Usuario autenticado: ${userCredential.user?.email}");
     } on FirebaseAuthException catch (e) {
-
       String message = '';
 
+      // Manejar errores específicos de Firebase
       if (e.code == 'user-not-found') {
         message = 'No se encontró un usuario con ese correo electrónico.';
       } else if (e.code == 'wrong-password') {
-        message = 'La contraseña es incorrecta.';
+        message = 'La contraseña es incorrecta. Intenta de nuevo.';
+      } else if (e.code == 'invalid-email') {
+        message = 'El formato del correo electrónico es incorrecto.';
+      } else if (e.code == 'user-disabled') {
+        message = 'Tu cuenta ha sido deshabilitada. Contacta al soporte.';
       } else {
         message = e.message ?? 'Ocurrió un error. Intenta nuevamente.';
       }
 
-
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.red,
-      ));
+      // Mostrar el mensaje de error en un SnackBar
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
-
 
   void _navigateToRegister() {
     Navigator.push(
@@ -126,3 +140,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+

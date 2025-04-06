@@ -39,7 +39,9 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Voluntariado"),
+        title: const Text("Voluntariado", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.green[700],
+        elevation: 4,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -51,6 +53,10 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
             const Text("Únete a nuestra comunidad y ayuda a los animales."),
             const SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green[600],
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              ),
               onPressed: () {
                 final User? user = _auth.currentUser;
                 if (user != null) {
@@ -64,41 +70,42 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                   );
                 }
               },
-              child: const Text("Quiero ser voluntario", style: TextStyle(color: Colors.black),),
+              child: const Text("Quiero ser voluntario", style: TextStyle(color: Colors.white)),
             ),
             const SizedBox(height: 20),
 
-
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: const InputDecoration(
-                      hintText: "Escribe aquí...",
-                      prefixIcon: Icon(Icons.search),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        searchQuery = value.toLowerCase();
-                      });
-                    },
-                  ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 4)]
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Buscar voluntario...",
+                  prefixIcon: const Icon(Icons.search, color: Colors.green),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                  filled: true,
                 ),
-                const SizedBox(width: 10),
-                DropdownButton<String>(
-                  value: searchCriteria,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      searchCriteria = newValue!;
-                    });
-                  },
-                  items: const [
-                    DropdownMenuItem(value: "nombre", child: Text("Nombre")),
-                    DropdownMenuItem(value: "motivacion", child: Text("Motivación")),
-                    DropdownMenuItem(value: "disponibilidad", child: Text("Disponibilidad")),
-                  ],
-                ),
+                onChanged: (value) {
+                  setState(() {
+                    searchQuery = value.toLowerCase();
+                  });
+                },
+              ),
+            ),
+            const SizedBox(height: 10),
+            DropdownButton<String>(
+              value: searchCriteria,
+              onChanged: (String? newValue) {
+                setState(() {
+                  searchCriteria = newValue!;
+                });
+              },
+              items: const [
+                DropdownMenuItem(value: "nombre", child: Text("Nombre")),
+                DropdownMenuItem(value: "motivacion", child: Text("Motivación")),
+                DropdownMenuItem(value: "disponibilidad", child: Text("Disponibilidad")),
               ],
             ),
             const SizedBox(height: 20),
@@ -115,40 +122,12 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   }
-                  if (snapshot.hasError) {
-                    return const Center(child: Text('Error al cargar los voluntarios'));
-                  }
 
                   final volunteers = snapshot.data?.docs ?? [];
-
-                  if (volunteers.isEmpty) {
-                    return const Center(child: Text('No hay voluntarios inscritos'));
-                  }
-
-
                   final filteredVolunteers = volunteers.where((volunteer) {
                     final data = volunteer.data() as Map<String, dynamic>;
-
-                    final nombre = data.containsKey('nombre')
-                        ? (data['nombre'] ?? '').toLowerCase()
-                        : 'sin nombre';
-                    final motivacion = data.containsKey('motivacion')
-                        ? (data['motivacion'] ?? '').toLowerCase()
-                        : '';
-                    final disponibilidad = data.containsKey('disponibilidad')
-                        ? (data['disponibilidad'] ?? '').toLowerCase()
-                        : '';
-
-                    switch (searchCriteria) {
-                      case "nombre":
-                        return nombre.contains(searchQuery);
-                      case "motivacion":
-                        return motivacion.contains(searchQuery);
-                      case "disponibilidad":
-                        return disponibilidad.contains(searchQuery);
-                      default:
-                        return false;
-                    }
+                    final value = (data[searchCriteria] ?? '').toString().toLowerCase();
+                    return value.contains(searchQuery);
                   }).toList();
 
                   if (filteredVolunteers.isEmpty) {
@@ -161,32 +140,27 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                       var volunteer = filteredVolunteers[index];
                       final data = volunteer.data() as Map<String, dynamic>;
 
-                      String nombre = data.containsKey('nombre') ? data['nombre'] ?? '' : '';
-
-
-                      if (nombre.isEmpty) {
-                        nombre = currentUserName;
-                      }
-
-                      final motivacion = data.containsKey('motivacion') ? data['motivacion'] ?? 'No disponible' : 'No disponible';
-                      final disponibilidad = data.containsKey('disponibilidad') ? data['disponibilidad'] ?? 'No disponible' : 'No disponible';
+                      // Obtener los campos de la base de datos
+                      final nombre = data['nombre'] ?? 'Sin nombre';
+                      final motivacion = data['motivacion'] ?? 'No disponible';
+                      final diasDisponibles = data['diasDisponibles'] ?? 'No disponible';
+                      final rangoHoras = data['rangoHoras'] ?? 'No disponible';
 
                       return Card(
                         margin: const EdgeInsets.symmetric(vertical: 8),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        elevation: 4,
                         child: ListTile(
-                          title: Text(nombre),
-                          subtitle: Text("Motivación: $motivacion\nDisponibilidad: $disponibilidad"),
+                          title: Text(nombre, style: const TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text("Motivación: $motivacion\n"
+                              "Disponibilidad: $diasDisponibles\n"
+                              "Horas: $rangoHoras"),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              IconButton(
-                                icon: const Icon(Icons.edit, color: Colors.blue),
-                                onPressed: () => _editVolunteer(context, volunteer),
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.delete, color: Colors.red),
-                                onPressed: () => _deleteVolunteer(volunteer.id),
-                              ),
+                              IconButton(icon: const Icon(Icons.edit, color: Colors.blueAccent), onPressed: () => _editVolunteer(context, volunteer)),
+                              IconButton(icon: const Icon(Icons.delete, color: Colors.redAccent),
+                                  onPressed: () => _confirmDelete(volunteer.id)),  // Confirmación antes de eliminar
                             ],
                           ),
                         ),
@@ -202,18 +176,45 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
     );
   }
 
+  void _confirmDelete(String id) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("¿Estás seguro?"),
+          content: const Text("Esta acción no se puede deshacer. ¿Quieres eliminar este voluntario?"),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el cuadro de diálogo
+              },
+              child: const Text("Cancelar"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _deleteVolunteer(id); // Eliminar el voluntario
+                Navigator.of(context).pop(); // Cerrar el cuadro de diálogo
+              },
+              child: const Text("Eliminar"),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   void _deleteVolunteer(String id) {
     FirebaseFirestore.instance.collection('voluntarios').doc(id).delete();
   }
-
 
   void _editVolunteer(BuildContext context, QueryDocumentSnapshot volunteer) {
     final data = volunteer.data() as Map<String, dynamic>;
 
     TextEditingController nombreController = TextEditingController(text: data.containsKey('nombre') ? data['nombre'] ?? '' : '');
     TextEditingController motivacionController = TextEditingController(text: data.containsKey('motivacion') ? data['motivacion'] ?? '' : '');
-    TextEditingController disponibilidadController = TextEditingController(text: data.containsKey('disponibilidad') ? data['disponibilidad'] ?? '' : '');
+    TextEditingController disponibilidadController = TextEditingController(text: data.containsKey('diasDisponibles') ? data['diasDisponibles'] ?? '' : '');
+    TextEditingController rangoHorasController = TextEditingController(text: data.containsKey('rangoHoras') ? data['rangoHoras'] ?? '' : '');
 
     showDialog(
       context: context,
@@ -227,7 +228,9 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
               const SizedBox(height: 10),
               TextField(controller: motivacionController, decoration: const InputDecoration(labelText: "Motivación")),
               const SizedBox(height: 10),
-              TextField(controller: disponibilidadController, decoration: const InputDecoration(labelText: "Disponibilidad")),
+              TextField(controller: disponibilidadController, decoration: const InputDecoration(labelText: "Días Disponibles")),
+              const SizedBox(height: 10),
+              TextField(controller: rangoHorasController, decoration: const InputDecoration(labelText: "Rango de Horas")),
             ],
           ),
           actions: [
@@ -237,7 +240,8 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                 FirebaseFirestore.instance.collection('voluntarios').doc(volunteer.id).update({
                   'nombre': nombreController.text,
                   'motivacion': motivacionController.text,
-                  'disponibilidad': disponibilidadController.text,
+                  'diasDisponibles': disponibilidadController.text,
+                  'rangoHoras': rangoHorasController.text,
                 });
                 Navigator.pop(context);
               },
